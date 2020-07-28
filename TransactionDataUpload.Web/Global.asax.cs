@@ -1,6 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using TransactionDataUpload.Web.App_Start;
 
 namespace TransactionDataUpload.Web
 {
@@ -10,6 +11,7 @@ namespace TransactionDataUpload.Web
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            AutofacConfig.ConfigureContainer();
         }
     }
 }
