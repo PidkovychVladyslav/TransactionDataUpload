@@ -2,12 +2,16 @@
 {
     using Autofac;
     using System.Collections.Generic;
-    using Domain.Executors.Abstraction.Base;
-    using Domain.Executors.Implementation;
+    using Domain.Services.Abstraction.Base;
+    using Domain.Services.Implementation;
     using Domain.Factories.Implementation;
-    using Domain.Helpers.Implementation;
     using Autofac.Integration.Mvc;
     using System.Web.Mvc;
+    using TransactionDataUpload.Domain.Managers.Implementation;
+    using Autofac.Integration.WebApi;
+    using System.Reflection;
+    using System.Web.Http;
+    using TransactionDataUpload.Domain.Providers.Implementation;
 
     public class AutofacConfig
     {
@@ -15,17 +19,23 @@
         {
             var builder = new ContainerBuilder();
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
+            builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
+
+            builder.RegisterType<UnitOfWork>().AsImplementedInterfaces();
             builder.RegisterType<FileProcessorFactory>().AsImplementedInterfaces();
-            builder.RegisterType<CsvProcessor>().AsImplementedInterfaces();
-            builder.RegisterType<XmlProcessor>().AsImplementedInterfaces();
+            builder.RegisterType<CsvFileProcessingService>().AsImplementedInterfaces();
+            builder.RegisterType<XmlFileProcessingService>().AsImplementedInterfaces();
+            builder.RegisterType<CsvTransactionProvider>().AsImplementedInterfaces();
             builder.RegisterType<XmlTransactionProvider>().AsImplementedInterfaces();
 
             var container = builder.Build();
-            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
             using (var scope = container.BeginLifetimeScope())
             {
-                var allDependencies = scope.Resolve<IEnumerable<IFileProcessor>>();
+                var allDependencies = scope.Resolve<IEnumerable<IFileProcessingService>>();
             }
+
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+            GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver((IContainer)container);
         }
     }
 }

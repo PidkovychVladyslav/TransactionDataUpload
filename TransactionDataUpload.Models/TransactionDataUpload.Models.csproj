@@ -41,8 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\IMappable.cs" />
     <Compile Include="Base\IUnit.cs" />
+    <Compile Include="Domain\CsvTransactions.cs" />
     <Compile Include="Domain\PaymentDetailsXmlUnit.cs" />
+    <Compile Include="Domain\TransactionCsvUnit.cs" />
     <Compile Include="Domain\TransactionXmlUnit.cs" />
     <Compile Include="Domain\XmlTransactions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

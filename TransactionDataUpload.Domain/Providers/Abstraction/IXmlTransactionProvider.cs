@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using TransactionDataUpload.Models.Domain;
 
-namespace TransactionDataUpload.Domain.Helpers.Abstraction
+namespace TransactionDataUpload.Domain.Providers.Abstraction
 {
     public interface IXmlTransactionProvider
     {

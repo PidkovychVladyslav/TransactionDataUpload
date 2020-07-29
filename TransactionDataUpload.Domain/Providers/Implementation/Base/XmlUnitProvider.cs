@@ -4,7 +4,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using TransactionDataUpload.Models.Base;
 
-namespace TransactionDataUpload.Domain.Helpers.Implementation.Base
+namespace TransactionDataUpload.Domain.Providers.Implementation.Base
 {
     public abstract class XmlUnitProvider<TUnit> where TUnit : class, IUnit
     {

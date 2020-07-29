@@ -8,7 +8,7 @@ namespace TransactionDataUpload.Models.Domain
     [Serializable]
     [XmlRoot("Transactions")]
     [XmlInclude(typeof(TransactionXmlUnit))]
-    public class XmlTransactions : IUnit
+    public class XmlTransactions : IUnit, IMappable
     {
         [XmlElement("Transaction")]
         public List<TransactionXmlUnit> TransactionXmlUnits { get; set; }

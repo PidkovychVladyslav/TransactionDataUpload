@@ -1,9 +1,9 @@
 ﻿namespace TransactionDataUpload.Domain.Factories.Abstraction
 {
-    using Executors.Abstraction.Base;
+    using Services.Abstraction.Base;
 
     public interface IFileProcessorFactory
     {
-        IFileProcessor GetFileProcessor(string fileName);
+        IFileProcessingService GetFileProcessor(string fileName);
     }
 }

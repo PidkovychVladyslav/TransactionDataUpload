@@ -1,15 +1,19 @@
-﻿using System.Web;
+﻿using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using TransactionDataUpload.Domain.Factories.Abstraction;
+using TransactionDataUpload.Domain.Managers.Abstraction;
 
 namespace TransactionDataUpload.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IFileProcessorFactory _fileProcessorFactory;
 
-        public HomeController(IFileProcessorFactory fileProcessorFactory)
+        public HomeController(IUnitOfWork unitOfWork, IFileProcessorFactory fileProcessorFactory)
         {
+            _unitOfWork = unitOfWork;
             _fileProcessorFactory = fileProcessorFactory;
         }
 

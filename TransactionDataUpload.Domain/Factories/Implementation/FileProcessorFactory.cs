@@ -4,18 +4,18 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Executors.Abstraction.Base;
+    using Services.Abstraction.Base;
 
     public class FileProcessorFactory : IFileProcessorFactory
     {
-        private readonly IEnumerable<IFileProcessor> _availableProcessors;
+        private readonly IEnumerable<IFileProcessingService> _availableProcessors;
 
-        public FileProcessorFactory(IEnumerable<IFileProcessor> availableProcessors)
+        public FileProcessorFactory(IEnumerable<IFileProcessingService> availableProcessors)
         {
             _availableProcessors = availableProcessors;
         }
 
-        public IFileProcessor GetFileProcessor(string fileName)
+        public IFileProcessingService GetFileProcessor(string fileName)
         {
             var supportedParser = _availableProcessors
                     .FirstOrDefault(x => x.SupportsFormat(fileName));

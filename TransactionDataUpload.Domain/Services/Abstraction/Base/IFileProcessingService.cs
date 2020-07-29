@@ -1,8 +1,8 @@
 ﻿using System.Web;
 
-namespace TransactionDataUpload.Domain.Executors.Abstraction.Base
+namespace TransactionDataUpload.Domain.Services.Abstraction.Base
 {
-    public interface IFileProcessor
+    public interface IFileProcessingService
     {
         bool SupportsFormat(string fileName);
         void Process(HttpPostedFileBase file);

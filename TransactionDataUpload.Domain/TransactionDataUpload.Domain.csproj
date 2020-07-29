@@ -31,9 +31,52 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.10.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="CsvHelper, Version=15.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.15.0.5\lib\net45\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\net461\System.ValueTuple.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.1.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.1.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.0\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,23 +85,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Executors\Abstraction\ICsvProcessor.cs" />
-    <Compile Include="Executors\Abstraction\Base\IFileProcessor.cs" />
-    <Compile Include="Executors\Abstraction\IXmlProcessor.cs" />
-    <Compile Include="Executors\Implementation\CsvProcessor.cs" />
-    <Compile Include="Executors\Implementation\XmlProcessor.cs" />
+    <Compile Include="Automapper\Base\AutoMapperConfig.cs" />
+    <Compile Include="Automapper\Base\AutoMapperExtension.cs" />
+    <Compile Include="Automapper\Profiles\CsvTransactionProfile.cs" />
+    <Compile Include="Services\Abstraction\ICsvFileProcessingService.cs" />
+    <Compile Include="Services\Abstraction\Base\IFileProcessingService.cs" />
+    <Compile Include="Services\Abstraction\IXmlFileProcessingService.cs" />
+    <Compile Include="Services\Implementation\CsvFileProcessingService.cs" />
+    <Compile Include="Services\Implementation\XmlFileProcessingService.cs" />
     <Compile Include="Factories\Abstraction\IFileProcessorFactory.cs" />
     <Compile Include="Factories\Implementation\FileProcessorFactory.cs" />
-    <Compile Include="Helpers\Abstraction\IXmlTransactionProvider.cs" />
-    <Compile Include="Helpers\Implementation\Base\XmlUnitProvider.cs" />
-    <Compile Include="Helpers\Implementation\XmlTransactionProvider.cs" />
+    <Compile Include="Providers\Abstraction\ICsvTransactionProvider.cs" />
+    <Compile Include="Providers\Abstraction\IXmlTransactionProvider.cs" />
+    <Compile Include="Providers\Implementation\Base\CsvUnitProvider.cs" />
+    <Compile Include="Providers\Implementation\Base\XmlUnitProvider.cs" />
+    <Compile Include="Providers\Implementation\CsvTransactionProvider.cs" />
+    <Compile Include="Providers\Implementation\XmlTransactionProvider.cs" />
+    <Compile Include="Automapper\Profiles\XmlTransactionProfile.cs" />
+    <Compile Include="Managers\Abstraction\IUnitOfWork.cs" />
+    <Compile Include="Managers\Implementation\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TransactionDataUpload.Data\TransactionDataUpload.Data.csproj">
+      <Project>{3707DB9F-5BB3-49F9-9ABC-0F4B6021F9C3}</Project>
+      <Name>TransactionDataUpload.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TransactionDataUpload.Models\TransactionDataUpload.Models.csproj">
       <Project>{624F7C9F-3636-4D97-8C1F-8A3A65ED34A0}</Project>
       <Name>TransactionDataUpload.Models</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

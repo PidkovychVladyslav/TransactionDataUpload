@@ -1,9 +1,9 @@
 ﻿using System.Web;
-using TransactionDataUpload.Domain.Helpers.Abstraction;
-using TransactionDataUpload.Domain.Helpers.Implementation.Base;
+using TransactionDataUpload.Domain.Providers.Abstraction;
+using TransactionDataUpload.Domain.Providers.Implementation.Base;
 using TransactionDataUpload.Models.Domain;
 
-namespace TransactionDataUpload.Domain.Helpers.Implementation
+namespace TransactionDataUpload.Domain.Providers.Implementation
 {
     public class XmlTransactionProvider : XmlUnitProvider<XmlTransactions>, IXmlTransactionProvider
     {

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Xml.Serialization;
+using TransactionDataUpload.Models.Base;
 
 namespace TransactionDataUpload.Models.Domain
 {
-    public class TransactionXmlUnit
+    public class TransactionXmlUnit : IMappable
     {
         [XmlAttribute("id")]
         public string Id { get; set; }
