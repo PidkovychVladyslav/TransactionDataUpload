@@ -13,6 +13,7 @@ namespace TransactionDataUpload.Domain.Automapper.Base
                 #region Profiles
                 cfg.AddProfile(new XmlTransactionProfile());
                 cfg.AddProfile(new CsvTransactionProfile());
+                cfg.AddProfile(new TransactionDataProfile());
                 #endregion
             });
 

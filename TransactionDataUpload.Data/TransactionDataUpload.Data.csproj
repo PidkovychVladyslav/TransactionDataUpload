@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\TransactionConfiguration.cs" />
+    <Compile Include="Configurations\TransactionDataConfiguration.cs" />
     <Compile Include="DataContext.cs" />
     <Compile Include="Entities\BasicEntity.cs" />
     <Compile Include="Entities\Transaction.cs" />

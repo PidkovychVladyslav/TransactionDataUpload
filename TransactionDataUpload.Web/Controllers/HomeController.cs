@@ -1,6 +1,7 @@
-﻿using System.Linq;
+﻿using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using TransactionDataUpload.Core.Exceptions;
 using TransactionDataUpload.Domain.Factories.Abstraction;
 using TransactionDataUpload.Domain.Managers.Abstraction;
 
@@ -26,9 +27,22 @@ namespace TransactionDataUpload.Web.Controllers
         [HttpPost]
         public ActionResult Upload(HttpPostedFileBase uploadFile)
         {
-            var fileProcessor = _fileProcessorFactory.GetFileProcessor(uploadFile.FileName);
-            fileProcessor.Process(uploadFile);
-            return RedirectToAction("Index");
+            try
+            {
+                var fileProcessor = _fileProcessorFactory.GetFileProcessor(uploadFile.FileName);
+                fileProcessor.Process(uploadFile);
+
+                return new HttpStatusCodeResult(HttpStatusCode.OK, "File upload processed successfully!");
+            }
+            catch (UnknownFormatException ex)
+            {
+                TempData["ErrorMsg"] = ex.Message;
+                return RedirectToAction("Index");
+            }
+            catch (ParsingValidationException ex)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ex.Message);
+            }
         }
     }
 }

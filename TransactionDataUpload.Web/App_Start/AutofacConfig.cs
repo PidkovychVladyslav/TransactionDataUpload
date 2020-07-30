@@ -1,18 +1,18 @@
-﻿namespace TransactionDataUpload.Web.App_Start
-{
-    using Autofac;
-    using System.Collections.Generic;
-    using Domain.Services.Abstraction.Base;
-    using Domain.Services.Implementation;
-    using Domain.Factories.Implementation;
-    using Autofac.Integration.Mvc;
-    using System.Web.Mvc;
-    using TransactionDataUpload.Domain.Managers.Implementation;
-    using Autofac.Integration.WebApi;
-    using System.Reflection;
-    using System.Web.Http;
-    using TransactionDataUpload.Domain.Providers.Implementation;
+﻿using Autofac;
+using Autofac.Integration.WebApi;
+using Autofac.Integration.Mvc;
+using System.Collections.Generic;
+using System.Web.Mvc;
+using System.Reflection;
+using System.Web.Http;
+using TransactionDataUpload.Domain.Managers.Implementation;
+using TransactionDataUpload.Domain.Factories.Implementation;
+using TransactionDataUpload.Domain.Providers.Implementation;
+using TransactionDataUpload.Domain.Services.Abstraction.Base;
+using TransactionDataUpload.Domain.Services.Implementation;
 
+namespace TransactionDataUpload.Web.App_Start
+{
     public class AutofacConfig
     {
         public static void ConfigureContainer()
@@ -22,6 +22,7 @@
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
             builder.RegisterType<UnitOfWork>().AsImplementedInterfaces();
+            builder.RegisterType<TransactionsDataService>().AsImplementedInterfaces();
             builder.RegisterType<FileProcessorFactory>().AsImplementedInterfaces();
             builder.RegisterType<CsvFileProcessingService>().AsImplementedInterfaces();
             builder.RegisterType<XmlFileProcessingService>().AsImplementedInterfaces();

@@ -1,12 +1,14 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Transaction Data Upload";
 }
 
-<h2>Hello World</h2>
-
-@using (Html.BeginForm("Upload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    <input type="file" name="uploadFile" /><br>
-    <input type="submit" value="Upload" />
-}
+<div class="jumbotron">
+    <h3>Transaction Data Upload</h3>
+    <p class="alert">@TempData["ErrorMsg"]</p>
+    @using (Html.BeginForm("Upload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="file" name="uploadFile" />
+        <input type="submit" value="Upload" />
+    }
+</div>

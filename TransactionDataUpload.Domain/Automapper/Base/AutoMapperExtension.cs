@@ -1,4 +1,5 @@
-﻿using TransactionDataUpload.Data.Entities;
+﻿using System.Collections.Generic;
+using TransactionDataUpload.Data.Entities;
 using TransactionDataUpload.Models.Base;
 
 namespace TransactionDataUpload.Domain.Automapper.Base
@@ -23,6 +24,16 @@ namespace TransactionDataUpload.Domain.Automapper.Base
         public static TTo To<TTo>(this TTo model, TTo entity)
         {
             return AutoMapperConfiguration.Mapper.Map(model, entity);
+        }
+
+        public static IEnumerable<TTo> To<TTo>(this IEnumerable<BasicEntity> model)
+        {
+            return AutoMapperConfiguration.Mapper.Map<IEnumerable<TTo>>(model);
+        }
+
+        public static IEnumerable<TTo> To<TTo>(this IEnumerable<IMappable> model)
+        {
+            return AutoMapperConfiguration.Mapper.Map<IEnumerable<TTo>>(model);
         }
     }
 }

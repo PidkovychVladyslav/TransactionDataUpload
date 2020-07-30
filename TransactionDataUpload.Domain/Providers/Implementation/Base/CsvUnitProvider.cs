@@ -6,20 +6,26 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Web;
+using TransactionDataUpload.Core.Exceptions;
+using TransactionDataUpload.Core.Helpers;
 using TransactionDataUpload.Models.Base;
 
 namespace TransactionDataUpload.Domain.Providers.Implementation.Base
 {
-    public abstract class CsvUnitProvider<TUnit> where TUnit : class, IUnit
+    public abstract class CsvUnitProvider<TUnit, TUnitMap> where TUnit : class, IUnit where TUnitMap : ClassMap
     {
-        protected IEnumerable<TUnit> GetUnitAsync(HttpPostedFileBase file)
+        protected IEnumerable<TUnit> GetUnit(HttpPostedFileBase file)
         {
             try
             {
                 using (var reader = new StreamReader(file.InputStream))
                 {
                     var csv = new CsvReader(reader, 
-                        new CsvConfiguration(CultureInfo.CurrentCulture) { Delimiter = ",", MissingFieldFound = null, HasHeaderRecord = false, BadDataFound = null});
+                        new CsvConfiguration(CultureInfo.CurrentCulture)
+                        { Delimiter = AppConstants.CsvDelimiterCharacter, MissingFieldFound = null,
+                            HasHeaderRecord = false, BadDataFound = null, CultureInfo = CultureInfo.InvariantCulture
+                        });
+                    csv.Configuration.RegisterClassMap<TUnitMap>();
 
                     var units = new List<TUnit>();
                     while (csv.Read())
@@ -33,7 +39,7 @@ namespace TransactionDataUpload.Domain.Providers.Implementation.Base
             }
             catch (TypeConverterException ex)
             {
-                throw new Exception();
+                throw new ParsingValidationException($"Parse error on Row: {ex.ReadingContext.RawRow} Field Index {ex.ReadingContext.CurrentIndex} - {ex.Message}");
             }
         }
     }

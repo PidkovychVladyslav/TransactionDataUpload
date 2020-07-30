@@ -88,10 +88,13 @@
     <Compile Include="Automapper\Base\AutoMapperConfig.cs" />
     <Compile Include="Automapper\Base\AutoMapperExtension.cs" />
     <Compile Include="Automapper\Profiles\CsvTransactionProfile.cs" />
+    <Compile Include="Automapper\Profiles\TransactionDataProfile.cs" />
     <Compile Include="Services\Abstraction\ICsvFileProcessingService.cs" />
     <Compile Include="Services\Abstraction\Base\IFileProcessingService.cs" />
+    <Compile Include="Services\Abstraction\ITransactionsDataService.cs" />
     <Compile Include="Services\Abstraction\IXmlFileProcessingService.cs" />
     <Compile Include="Services\Implementation\CsvFileProcessingService.cs" />
+    <Compile Include="Services\Implementation\TransactionsDataService.cs" />
     <Compile Include="Services\Implementation\XmlFileProcessingService.cs" />
     <Compile Include="Factories\Abstraction\IFileProcessorFactory.cs" />
     <Compile Include="Factories\Implementation\FileProcessorFactory.cs" />
@@ -107,6 +110,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TransactionDataUpload.Core\TransactionDataUpload.Core.csproj">
+      <Project>{E6A5F8DE-76F0-466F-B4C2-FCBE695803C5}</Project>
+      <Name>TransactionDataUpload.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TransactionDataUpload.Data\TransactionDataUpload.Data.csproj">
       <Project>{3707DB9F-5BB3-49F9-9ABC-0F4B6021F9C3}</Project>
       <Name>TransactionDataUpload.Data</Name>

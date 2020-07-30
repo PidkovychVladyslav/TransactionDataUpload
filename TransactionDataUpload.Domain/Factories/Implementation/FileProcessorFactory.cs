@@ -1,11 +1,11 @@
-﻿namespace TransactionDataUpload.Domain.Factories.Implementation
-{
-    using Abstraction;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using Services.Abstraction.Base;
+﻿using System.Collections.Generic;
+using System.Linq;
+using TransactionDataUpload.Domain.Factories.Abstraction;
+using TransactionDataUpload.Domain.Services.Abstraction.Base;
+using TransactionDataUpload.Core.Exceptions;
 
+namespace TransactionDataUpload.Domain.Factories.Implementation
+{
     public class FileProcessorFactory : IFileProcessorFactory
     {
         private readonly IEnumerable<IFileProcessingService> _availableProcessors;
@@ -22,7 +22,7 @@
 
             if (supportedParser == null)
             {
-                throw new InvalidOperationException($"No supported parser found bla bla'.");
+                throw new UnknownFormatException($"System doesn't support format of uploaded file");
             }
 
             return supportedParser;

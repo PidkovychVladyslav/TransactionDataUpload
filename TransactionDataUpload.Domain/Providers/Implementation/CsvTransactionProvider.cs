@@ -5,7 +5,7 @@ using TransactionDataUpload.Models.Domain;
 
 namespace TransactionDataUpload.Domain.Providers.Implementation
 {
-    public class CsvTransactionProvider : CsvUnitProvider<TransactionCsvUnit>, ICsvTransactionProvider
+    public class CsvTransactionProvider : CsvUnitProvider<TransactionCsvUnit, TransactionCsvUnitMap>, ICsvTransactionProvider
     {
         public CsvTransactionProvider() : base()
         {
@@ -13,7 +13,7 @@ namespace TransactionDataUpload.Domain.Providers.Implementation
 
         public CsvTransactions GetCsvUnits(HttpPostedFileBase file)
         {
-            var transactionCsvUnits = GetUnitAsync(file);
+            var transactionCsvUnits = GetUnit(file);
             return new CsvTransactions { TransactionCsvUnits = transactionCsvUnits };
         }
     }

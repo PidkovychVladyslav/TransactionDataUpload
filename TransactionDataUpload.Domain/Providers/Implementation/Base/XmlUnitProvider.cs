@@ -2,13 +2,14 @@
 using System.Web;
 using System.Xml;
 using System.Xml.Serialization;
+using TransactionDataUpload.Core.Exceptions;
 using TransactionDataUpload.Models.Base;
 
 namespace TransactionDataUpload.Domain.Providers.Implementation.Base
 {
     public abstract class XmlUnitProvider<TUnit> where TUnit : class, IUnit
     {
-        protected TUnit GetUnitAsync(HttpPostedFileBase file)
+        protected TUnit GetUnit(HttpPostedFileBase file)
         {
             try
             {
@@ -25,9 +26,9 @@ namespace TransactionDataUpload.Domain.Providers.Implementation.Base
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception();
+                throw new ParsingValidationException($"{ex.Message} - {ex.InnerException?.Message}");
             }
 
             return null;

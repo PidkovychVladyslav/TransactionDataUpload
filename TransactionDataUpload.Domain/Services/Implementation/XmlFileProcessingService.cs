@@ -1,12 +1,13 @@
-﻿namespace TransactionDataUpload.Domain.Services.Implementation
-{
-    using Abstraction;
-    using System.Web;
-    using TransactionDataUpload.Data.Entities;
-    using TransactionDataUpload.Domain.Automapper.Base;
-    using TransactionDataUpload.Domain.Managers.Abstraction;
-    using TransactionDataUpload.Domain.Providers.Abstraction;
+﻿using System.Web;
+using TransactionDataUpload.Core.Helpers;
+using TransactionDataUpload.Data.Entities;
+using TransactionDataUpload.Domain.Automapper.Base;
+using TransactionDataUpload.Domain.Managers.Abstraction;
+using TransactionDataUpload.Domain.Providers.Abstraction;
+using TransactionDataUpload.Domain.Services.Abstraction;
 
+namespace TransactionDataUpload.Domain.Services.Implementation
+{
     public class XmlFileProcessingService : IXmlFileProcessingService
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -30,7 +31,7 @@
 
         public bool SupportsFormat(string fileName)
         {
-            return fileName.ToLower().EndsWith(".xml");
+            return fileName.ToLower().EndsWith(AppConstants.SupportedFormats.Xml);
         }
     }
 }

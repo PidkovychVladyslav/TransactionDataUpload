@@ -2,6 +2,7 @@
 using System;
 using TransactionDataUpload.Data.Entities;
 using TransactionDataUpload.Models.Domain;
+using static TransactionDataUpload.Core.Helpers.AppConstants;
 
 namespace TransactionDataUpload.Domain.Profiles
 {
@@ -12,9 +13,9 @@ namespace TransactionDataUpload.Domain.Profiles
             CreateMap<TransactionCsvUnit, TransactionData>()
                 .ForMember(dest => dest.Id, src => src.Ignore())
                 .ForMember(dest => dest.Identificator, src => src.MapFrom(m => m.Id))
-                .ForMember(dest => dest.Amount, src => src.MapFrom(m => decimal.Parse(m.Amount)))
+                .ForMember(dest => dest.Amount, src => src.MapFrom(m => m.Amount))
                 .ForMember(dest => dest.CurrencyCode, src => src.MapFrom(m => m.CurrencyCode))
-                .ForMember(dest => dest.TransactionDate, src => src.MapFrom(m => DateTime.Parse(m.TransactionDate)))
+                .ForMember(dest => dest.TransactionDate, src => src.MapFrom(m => m.TransactionDate))
                 .ForMember(dest => dest.Status, src => src.MapFrom(m => MapStatus(m.Status)));
 
             CreateMap<CsvTransactions, Transaction>()
@@ -29,11 +30,11 @@ namespace TransactionDataUpload.Domain.Profiles
         {
             switch (source)
             {
-                case "Approved":
+                case CsvStatuses.Approved:
                     return TransactionStatus.A;
-                case "Failed":
+                case CsvStatuses.Failed:
                     return TransactionStatus.R;
-                case "Finished":
+                case CsvStatuses.Finished:
                     return TransactionStatus.D;
                 default:
                     throw new ArgumentException();

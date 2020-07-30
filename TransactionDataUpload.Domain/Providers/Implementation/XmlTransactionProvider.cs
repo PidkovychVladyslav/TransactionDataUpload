@@ -13,7 +13,7 @@ namespace TransactionDataUpload.Domain.Providers.Implementation
 
         public XmlTransactions GetXmlUnits(HttpPostedFileBase file)
         {
-            var transactionXmlUnits = GetUnitAsync(file);
+            var transactionXmlUnits = GetUnit(file);
             return transactionXmlUnits;
         }
     }

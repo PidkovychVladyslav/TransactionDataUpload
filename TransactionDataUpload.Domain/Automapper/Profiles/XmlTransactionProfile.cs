@@ -2,6 +2,7 @@
 using System;
 using TransactionDataUpload.Data.Entities;
 using TransactionDataUpload.Models.Domain;
+using static TransactionDataUpload.Core.Helpers.AppConstants;
 
 namespace TransactionDataUpload.Domain.Profiles
 {
@@ -29,11 +30,11 @@ namespace TransactionDataUpload.Domain.Profiles
         {
             switch (source)
             {
-                case "Approved":
+                case XmlStatuses.Approved:
                     return TransactionStatus.A;
-                case "Rejected":
+                case XmlStatuses.Rejected:
                     return TransactionStatus.R;
-                case "Done":
+                case XmlStatuses.Done:
                     return TransactionStatus.D;
                 default:
                     throw new ArgumentException();
