@@ -7,10 +7,6 @@ namespace TransactionDataUpload.Domain.Providers.Implementation
 {
     public class CsvTransactionProvider : CsvUnitProvider<TransactionCsvUnit, TransactionCsvUnitMap>, ICsvTransactionProvider
     {
-        public CsvTransactionProvider() : base()
-        {
-        }
-
         public CsvTransactions GetCsvUnits(HttpPostedFileBase file)
         {
             var transactionCsvUnits = GetUnit(file);

@@ -21,7 +21,7 @@ namespace TransactionDataUpload.Domain.Providers.Implementation.Base
                         var request = xmlSerializer.Deserialize(reader);
                         if (request is TUnit unit)
                         {
-                            return (TUnit)request;
+                            return unit;
                         }
                     }
                 }

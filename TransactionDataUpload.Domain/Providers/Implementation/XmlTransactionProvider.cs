@@ -7,10 +7,6 @@ namespace TransactionDataUpload.Domain.Providers.Implementation
 {
     public class XmlTransactionProvider : XmlUnitProvider<XmlTransactions>, IXmlTransactionProvider
     {
-        public XmlTransactionProvider() : base()
-        {
-        }
-
         public XmlTransactions GetXmlUnits(HttpPostedFileBase file)
         {
             var transactionXmlUnits = GetUnit(file);

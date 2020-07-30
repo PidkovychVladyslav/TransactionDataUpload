@@ -3,22 +3,18 @@ using System.Web;
 using System.Web.Mvc;
 using TransactionDataUpload.Core.Exceptions;
 using TransactionDataUpload.Domain.Factories.Abstraction;
-using TransactionDataUpload.Domain.Managers.Abstraction;
 
 namespace TransactionDataUpload.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IUnitOfWork _unitOfWork;
         private readonly IFileProcessorFactory _fileProcessorFactory;
 
-        public HomeController(IUnitOfWork unitOfWork, IFileProcessorFactory fileProcessorFactory)
+        public HomeController(IFileProcessorFactory fileProcessorFactory)
         {
-            _unitOfWork = unitOfWork;
             _fileProcessorFactory = fileProcessorFactory;
         }
 
-        // GET: Home
         public ActionResult Index()
         {
             return View();

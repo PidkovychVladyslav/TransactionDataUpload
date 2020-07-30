@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Http;
-using TransactionDataUpload.Data.Entities;
 using TransactionDataUpload.Domain.Services.Abstraction;
 using TransactionDataUpload.Models.Dto;
 
